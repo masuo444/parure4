@@ -1,0 +1,121 @@
+/* FOMUS PARURE - App Specific Styles */
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Luxury Shadow Classes */
+.shadow-luxury {
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.05),
+    0 10px 15px -3px rgba(0, 0, 0, 0.05),
+    0 20px 25px -5px rgba(0, 0, 0, 0.03);
+}
+
+.shadow-luxury-lg {
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.08),
+    0 20px 25px -5px rgba(0, 0, 0, 0.05),
+    0 40px 50px -12px rgba(0, 0, 0, 0.04);
+}
+
+/* Float Animation */
+@keyframes float {
+  0%, 100% {
+    transform: rotateX(-15deg) rotateY(25deg) translateY(0px);
+  }
+  50% {
+    transform: rotateX(-15deg) rotateY(25deg) translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Fade In Up Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s ease-out forwards;
+}
+
+/* Delay Classes */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+
+/* Japanese Text Styling */
+.jp-text {
+  font-feature-settings: "palt";
+  letter-spacing: 0.05em;
+}
+
+/* Gradient Text */
+.text-gradient-gold {
+  background: linear-gradient(135deg, #D4B87C, #C9A86C, #A68B5B);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FAF9F7;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C9A86C;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #A68B5B;
+}
+
+/* Selection */
+::selection {
+  background-color: #C9A86C;
+  color: white;
+}
+
+/* Smooth focus states */
+*:focus {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 2px solid #C9A86C;
+  outline-offset: 2px;
+}
+
+/* Prevent content jump when scrollbar appears */
+html {
+  overflow-y: scroll;
+}

@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FOMUS PARURE</title>
+  <meta name="description" content="FOMUS PARURE — 日本の「枡」というかたちから生まれたジュエリーメゾン。">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Noto+Serif+JP:wght@200;300;400;500&family=Shippori+Mincho:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold: #C9A86C;
+      --gold-light: #D4B87C;
+      --gold-dark: #A68B5B;
+      --charcoal: #1A1A1A;
+      --ink: #0A0A0A;
+      --ivory: #FAF9F7;
+      --stone: #F5F4F2;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+
+    body {
+      font-family: 'Cormorant Garamond', 'Shippori Mincho', serif;
+      background-color: var(--ivory);
+      color: var(--charcoal);
+      line-height: 1.8;
+      letter-spacing: 0.02em;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .jp {
+      font-family: 'Shippori Mincho', 'Noto Serif JP', serif;
+      font-feature-settings: "palt";
+      letter-spacing: 0.08em;
+    }
+
+    ::selection { background-color: var(--gold); color: white; }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--ivory); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+    a { text-decoration: none; color: inherit; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    img { max-width: 100%; display: block; }
+
+    /* ───── Reveal Animation ───── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ═══════════════════════════════════════════
+       ① HERO — 無言・象徴だけ
+       ═══════════════════════════════════════════ */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 600px;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+    }
+
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.7;
+    }
+
+    @media (min-width: 768px) {
+      .hero-bg img {
+        object-fit: contain;
+        object-position: center;
+        opacity: 0.85;
+      }
+    }
+
+    .hero-brand {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .hero-brand h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 4vw, 2.2rem);
+      font-weight: 300;
+      letter-spacing: 0.45em;
+      color: rgba(255, 255, 255, 0.92);
+      text-transform: uppercase;
+    }
+
+    /* ═══════════════════════════════════════════
+       ② THE MAISON — 30秒で読む
+       ═══════════════════════════════════════════ */
+    .maison {
+      padding: 180px 24px;
+      text-align: center;
+      background: var(--ivory);
+    }
+
+    @media (min-width: 768px) {
+      .maison { padding: 260px 24px; }
+    }
+
+    .maison-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .maison-label {
+      display: block;
+      font-size: 9px;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 48px;
+    }
+
+    .maison-text {
+      font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+      font-weight: 300;
+      color: #444;
+      line-height: 2.6;
+    }
+
+    /* ═══════════════════════════════════════════
+       ③ THE MOTIF : MASU — 最重要セクション
+       ═══════════════════════════════════════════ */
+    .motif {
+      padding: 160px 24px;
+      background: white;
+    }
+
+    @media (min-width: 768px) {
+      .motif { padding: 220px 24px; }
+    }
+
+    .motif-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .motif-header {
+      text-align: center;
+      margin-bottom: 100px;
+    }
+
+    @media (min-width: 768px) {
+      .motif-header { margin-bottom: 140px; }
+    }
+
+    .motif-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      color: var(--charcoal);
+      margin-bottom: 28px;
+      text-transform: uppercase;
+    }
+
+    .motif-sub {
+      font-size: 12px;
+      letter-spacing: 0.25em;
+      color: #999;
+      font-weight: 400;
+    }
+
+    .motif-sub-jp {
+      display: block;
+      font-size: 0.9rem;
+      color: #888;
+      margin-top: 12px;
+      letter-spacing: 0.1em;
+    }
+
+    .motif-gallery {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    @media (min-width: 768px) {
+      .motif-gallery {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+      }
+    }
+
+    .motif-img {
+      overflow: hidden;
+      background: #f5f4f2;
+    }
+
+    .motif-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      aspect-ratio: 1;
+      transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .motif-img:hover img {
+      transform: scale(1.03);
+    }
+
+    /* ═══════════════════════════════════════════
+       ④ MASU AS A GIFT — 縁起物
+       ═══════════════════════════════════════════ */
+    .gift {
+      padding: 160px 24px;
+      background: var(--ivory);
+    }
+
+    @media (min-width: 768px) {
+      .gift { padding: 220px 24px; }
+    }
+
+    .gift-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .gift-inner {
+        grid-template-columns: 1fr 1fr;
+        gap: 120px;
+      }
+    }
+
+    .gift-visual {
+      overflow: hidden;
+    }
+
+    .gift-visual img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+
+    .gift-content {
+      max-width: 440px;
+    }
+
+    .gift-label {
+      display: block;
+      font-size: 9px;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 48px;
+    }
+
+    .gift-text {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      font-weight: 300;
+      color: #555;
+      line-height: 2.8;
+    }
+
+    /* ═══════════════════════════════════════════
+       ⑤ COLLECTIONS — 価格なし
+       ═══════════════════════════════════════════ */
+    .collections {
+      padding: 160px 24px;
+      background: white;
+    }
+
+    @media (min-width: 768px) {
+      .collections { padding: 220px 24px; }
+    }
+
+    .collections-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .collections-header {
+      text-align: center;
+      margin-bottom: 100px;
+    }
+
+    .collections-label {
+      display: block;
+      font-size: 9px;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+    }
+
+    .collections-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 300;
+      letter-spacing: 0.08em;
+    }
+
+    .collections-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+
+    @media (min-width: 640px) {
+      .collections-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (min-width: 1024px) {
+      .collections-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .product-card {
+      cursor: pointer;
+    }
+
+    .product-card-img {
+      overflow: hidden;
+      background: #f5f4f2;
+      margin-bottom: 28px;
+      position: relative;
+    }
+
+    .product-card-img img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .product-card:hover .product-card-img img {
+      transform: scale(1.03);
+    }
+
+    .product-card-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 1px solid transparent;
+      transition: border-color 0.8s ease;
+      pointer-events: none;
+    }
+
+    .product-card:hover .product-card-img::after {
+      border-color: rgba(201, 168, 108, 0.25);
+    }
+
+    .product-card-info {
+      text-align: center;
+    }
+
+    .product-card-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+
+    .product-card-type {
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .product-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #999;
+      transition: color 0.3s;
+    }
+
+    .product-card-link:hover { color: var(--charcoal); }
+
+    .product-card-link svg {
+      width: 12px;
+      height: 12px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.5;
+    }
+
+    /* ═══════════════════════════════════════════
+       ⑥ HIGH CRAFT — 京七宝
+       ═══════════════════════════════════════════ */
+    .highcraft {
+      padding: 160px 24px;
+      background: var(--ink);
+      color: white;
+    }
+
+    @media (min-width: 768px) {
+      .highcraft { padding: 220px 24px; }
+    }
+
+    .highcraft-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .highcraft-inner {
+        grid-template-columns: 1fr 1fr;
+        gap: 100px;
+      }
+    }
+
+    .highcraft-visual {
+      overflow: hidden;
+      order: 1;
+    }
+
+    @media (min-width: 768px) {
+      .highcraft-visual { order: 2; }
+    }
+
+    .highcraft-visual img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      opacity: 0.9;
+    }
+
+    .highcraft-content {
+      order: 2;
+      max-width: 440px;
+    }
+
+    @media (min-width: 768px) {
+      .highcraft-content { order: 1; }
+    }
+
+    .highcraft-label {
+      display: block;
+      font-size: 9px;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 48px;
+    }
+
+    .highcraft-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      margin-bottom: 40px;
+      line-height: 1.4;
+    }
+
+    .highcraft-text {
+      font-size: 0.95rem;
+      color: #fff;
+      line-height: 2.4;
+      font-weight: 300;
+    }
+
+    .highcraft-text-jp {
+      display: block;
+      margin-top: 32px;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 2.4;
+    }
+
+    /* ═══════════════════════════════════════════
+       ⑦ BESPOKE / GIFTING
+       ═══════════════════════════════════════════ */
+    .bespoke {
+      padding: 180px 24px;
+      background: var(--ivory);
+      text-align: center;
+    }
+
+    @media (min-width: 768px) {
+      .bespoke { padding: 260px 24px; }
+    }
+
+    .bespoke-inner {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .bespoke-text-en {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+      font-weight: 300;
+      font-style: italic;
+      color: #666;
+      letter-spacing: 0.04em;
+      line-height: 2;
+      margin-bottom: 16px;
+    }
+
+    .bespoke-text-jp {
+      font-size: 0.9rem;
+      color: #999;
+      line-height: 2.2;
+      margin-bottom: 64px;
+    }
+
+    .bespoke-divider {
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+      margin: 0 auto 64px;
+      opacity: 0.5;
+    }
+
+    .bespoke-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 20px 56px;
+      border: 1px solid rgba(201, 168, 108, 0.4);
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      transition: all 0.5s;
+    }
+
+    .bespoke-cta:hover {
+      border-color: var(--gold);
+      background: var(--gold);
+      color: white;
+    }
+
+    /* ═══════════════════════════════════════════
+       ⑧ FOOTER — 静かに
+       ═══════════════════════════════════════════ */
+    .footer {
+      padding: 80px 24px;
+      background: var(--ink);
+      text-align: center;
+    }
+
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      letter-spacing: 0.35em;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 16px;
+    }
+
+    .footer-location {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: rgba(255, 255, 255, 0.25);
+    }
+
+    .footer-copy {
+      margin-top: 48px;
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.15);
+      letter-spacing: 0.1em;
+    }
+
+    /* ═══════════════════════════════════════════
+       NAVIGATION — 最小限
+       ═══════════════════════════════════════════ */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 28px 32px;
+      transition: all 0.6s ease;
+    }
+
+    .nav.scrolled {
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(20px);
+      padding: 18px 32px;
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      letter-spacing: 0.35em;
+      color: rgba(255, 255, 255, 0.9);
+      transition: color 0.5s;
+    }
+
+    .nav.scrolled .nav-logo { color: var(--charcoal); }
+
+    .nav-links {
+      display: none;
+      list-style: none;
+      gap: 48px;
+    }
+
+    @media (min-width: 1024px) {
+      .nav-links { display: flex; }
+    }
+
+    .nav-links a {
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.6);
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .nav.scrolled .nav-links a { color: #999; }
+    .nav-links a:hover { color: white; }
+    .nav.scrolled .nav-links a:hover { color: var(--charcoal); }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: currentColor;
+      transition: width 0.5s ease;
+      opacity: 0.3;
+    }
+
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-menu-btn {
+      display: block;
+      color: rgba(255, 255, 255, 0.8);
+      transition: color 0.5s;
+    }
+
+    .nav.scrolled .nav-menu-btn { color: var(--charcoal); }
+
+    @media (min-width: 1024px) {
+      .nav-menu-btn { display: none; }
+    }
+
+    .nav-menu-btn svg {
+      width: 22px;
+      height: 22px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.5;
+    }
+
+    /* Mobile Menu */
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      background: var(--ivory);
+      z-index: 200;
+      transform: translateX(-100%);
+      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mobile-menu.open { transform: translateX(0); }
+
+    .mobile-menu-header {
+      padding: 24px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .mobile-menu-header span {
+      font-size: 9px;
+      letter-spacing: 0.4em;
+      color: var(--gold);
+    }
+
+    .mobile-menu-close svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--charcoal);
+      fill: none;
+      stroke-width: 1.5;
+    }
+
+    .mobile-menu-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 48px;
+      gap: 36px;
+    }
+
+    .mobile-menu-body a {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.15em;
+      color: var(--charcoal);
+      transition: color 0.3s;
+    }
+
+    .mobile-menu-body a:hover { color: var(--gold); }
+  </style>
+</head>
+<body>
+
+  <!-- ─── Navigation ─── -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">FOMUS PARURE</a>
+      <ul class="nav-links">
+        <li><a href="#maison" data-i18n="nav.maison">Maison</a></li>
+        <li><a href="collections.html" data-i18n="nav.collections">Collections</a></li>
+        <li><a href="#bespoke" data-i18n="nav.bespoke">Bespoke</a></li>
+      </ul>
+      <button class="nav-menu-btn" onclick="openMenu()">
+        <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-header">
+      <span data-i18n="nav.menu">MENU</span>
+      <button class="mobile-menu-close" onclick="closeMenu()">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="mobile-menu-body">
+      <a href="#maison" onclick="closeMenu()" data-i18n="nav.maison">Maison</a>
+      <a href="collections.html" data-i18n="nav.collections">Collections</a>
+      <a href="#bespoke" onclick="closeMenu()" data-i18n="nav.bespoke">Bespoke</a>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       ① HERO
+       ═══════════════════════════════════════════ -->
+  <header class="hero">
+    <div class="hero-bg">
+      <img src="IMG_6538.JPG" alt="FOMUS PARURE">
+    </div>
+    <div class="hero-brand">
+      <h1>FOMUS PARURE</h1>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════
+       ② THE MAISON
+       ═══════════════════════════════════════════ -->
+  <section class="maison" id="maison">
+    <div class="maison-inner reveal">
+      <span class="maison-label" data-i18n="idx.maison.label">The Maison</span>
+      <p class="maison-text jp" data-i18n="idx.maison.text">
+        FOMUS PARUREは、<br>
+        1300年にわたり受け継がれてきた<br>
+        日本の「枡」から生まれた<br>
+        ジュエリーメゾンです。
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       ④ MASU AS A GIFT
+       ═══════════════════════════════════════════ -->
+  <section class="gift" id="gift">
+    <div class="gift-inner">
+      <div class="gift-visual reveal">
+        <img src="MASU TOP.jpg" alt="MASU as a gift">
+      </div>
+      <div class="gift-content reveal">
+        <span class="gift-label" data-i18n="idx.gift.label">Masu as a Gift</span>
+        <p class="gift-text jp" data-i18n="idx.gift.text">
+          枡は、日本では<br>
+          縁起物として贈られてきたかたちです。<br><br>
+          節目や祝いの場で、<br>
+          良い兆しを分かち合うために選ばれてきました。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       ⑤ COLLECTIONS
+       ═══════════════════════════════════════════ -->
+  <section class="collections" id="collections">
+    <div class="collections-inner">
+      <div class="collections-header reveal">
+        <span class="collections-label" data-i18n="idx.col.label">Collections</span>
+        <h2 class="collections-title" data-i18n="idx.col.title">The Collection</h2>
+      </div>
+
+      <div class="collections-grid">
+        <div class="product-card reveal">
+          <div class="product-card-img">
+            <img src="天コレクション.JPG" alt="MASU Necklace">
+          </div>
+          <div class="product-card-info">
+            <h3 class="product-card-name">MASU Necklace</h3>
+            <span class="product-card-type">Necklace</span>
+            <a href="collections.html" class="product-card-link">
+              View Details
+              <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="product-card reveal">
+          <div class="product-card-img">
+            <img src="森コレクション.JPG" alt="MASU Earrings">
+          </div>
+          <div class="product-card-info">
+            <h3 class="product-card-name">MASU Earrings</h3>
+            <span class="product-card-type">Earrings</span>
+            <a href="collections.html" class="product-card-link">
+              View Details
+              <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="collections-action reveal" style="text-align:center; margin-top:100px;">
+        <a href="collections.html" class="bespoke-cta" data-i18n="idx.col.viewall">
+          View All Collections
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       ⑥ HIGH CRAFT : KYOTO CLOISONNÉ
+       ═══════════════════════════════════════════ -->
+  <section class="highcraft" id="highcraft">
+    <div class="highcraft-inner">
+      <div class="highcraft-content reveal">
+        <span class="highcraft-label" data-i18n="idx.hc.label">High Craft</span>
+        <h2 class="highcraft-title">Kyoto Cloisonné</h2>
+        <p class="highcraft-text" data-i18n="idx.hc.text">
+          Selected pieces are created in collaboration<br>
+          with Kyoto Cloisonné, a traditional Japanese craft.
+        </p>
+        <span class="highcraft-text-jp jp" data-i18n="idx.hc.textjp" data-i18n-hide="1">
+          一部の作品は、日本の伝統工芸である<br>
+          京七宝とのコラボレーションにより生まれています。
+        </span>
+        <a href="kyoto-cloisonne.html" class="bespoke-cta" data-i18n="idx.hc.discover" style="margin-top:48px; color:#fff; border-color:rgba(255,255,255,0.4);">Discover</a>
+      </div>
+      <div class="highcraft-visual reveal">
+        <img src="IMG_6532.JPG" alt="Kyoto Cloisonné">
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       ⑦ BESPOKE / GIFTING
+       ═══════════════════════════════════════════ -->
+  <section class="bespoke" id="bespoke">
+    <div class="bespoke-inner reveal">
+      <p class="bespoke-text-en" data-i18n="idx.bespoke.en">
+        For special occasions and personal milestones.
+      </p>
+      <p class="bespoke-text-jp jp" data-i18n="idx.bespoke.jp" data-i18n-hide="1">
+        大切な節目や、特別な贈り物のために。
+      </p>
+      <div class="bespoke-divider"></div>
+      <a href="mailto:contact@fomusparure.com" class="bespoke-cta" data-i18n="idx.bespoke.cta">Contact Concierge</a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       ⑧ FOOTER
+       ═══════════════════════════════════════════ -->
+  <footer class="footer">
+    <p class="footer-brand">FOMUS PARURE</p>
+    <p class="footer-location" data-i18n="footer.location">Kyoto, Japan</p>
+    <p class="footer-copy">&copy; 2025 FOMUS PARURE</p>
+  </footer>
+
+  <script src="i18n.js"></script>
+  <script>
+    // Navigation scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 80);
+    });
+
+    // Mobile menu
+    function openMenu() {
+      document.getElementById('mobileMenu').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      document.getElementById('mobileMenu').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    function revealOnScroll() {
+      reveals.forEach(el => {
+        const top = el.getBoundingClientRect().top;
+        if (top < window.innerHeight - 60) {
+          el.classList.add('active');
+        }
+      });
+    }
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll();
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

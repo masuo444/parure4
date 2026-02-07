@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Collections — FOMUS PARURE</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Noto+Serif+JP:wght@200;300;400;500&family=Shippori+Mincho:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold: #C9A86C;
+      --charcoal: #1A1A1A;
+      --ink: #0A0A0A;
+      --ivory: #FAF9F7;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+
+    body {
+      font-family: 'Cormorant Garamond', 'Shippori Mincho', serif;
+      background-color: var(--ivory);
+      color: var(--charcoal);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .jp {
+      font-family: 'Shippori Mincho', 'Noto Serif JP', serif;
+      font-feature-settings: "palt";
+      letter-spacing: 0.08em;
+    }
+
+    ::selection { background-color: var(--gold); color: white; }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--ivory); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+    a { text-decoration: none; color: inherit; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    /* ───── No animation ───── */
+
+    /* ═══════════════════════════════════════════
+       NAVIGATION
+       ═══════════════════════════════════════════ */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 28px 32px;
+      background: rgba(250, 249, 247, 0.96);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      letter-spacing: 0.35em;
+      color: var(--charcoal);
+    }
+
+    .nav-links {
+      display: none;
+      list-style: none;
+      gap: 48px;
+    }
+
+    @media (min-width: 1024px) {
+      .nav-links { display: flex; }
+    }
+
+    .nav-links a {
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #999;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--charcoal); }
+
+    /* ═══════════════════════════════════════════
+       HEADER
+       ═══════════════════════════════════════════ */
+    .page-header {
+      padding: 180px 48px 80px;
+    }
+
+    @media (min-width: 768px) {
+      .page-header { padding: 220px 48px 120px; }
+    }
+
+    .page-header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 5vw, 3.2rem);
+      font-weight: 300;
+      letter-spacing: 0.1em;
+    }
+
+    /* ═══════════════════════════════════════════
+       GRID
+       ═══════════════════════════════════════════ */
+    .grid-wrap {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 48px 200px;
+    }
+
+    @media (min-width: 768px) {
+      .grid-wrap { padding-bottom: 280px; }
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 96px 48px;
+    }
+
+    @media (min-width: 640px) {
+      .grid { grid-template-columns: repeat(3, 1fr); gap: 96px 48px; }
+    }
+
+    @media (min-width: 1024px) {
+      .grid { grid-template-columns: repeat(4, 1fr); gap: 96px 48px; }
+    }
+
+    @media (max-width: 767px) {
+      .grid-wrap { padding: 0 24px 160px; }
+      .grid { gap: 64px 20px; }
+    }
+
+    /* ═══════════════════════════════════════════
+       CARD
+       ═══════════════════════════════════════════ */
+    .card {
+      text-align: left;
+      display: block;
+      width: 100%;
+    }
+
+    .card-img {
+      aspect-ratio: 1;
+      overflow: hidden;
+      background: #f0efed;
+    }
+
+    .card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .card:hover .card-img img {
+      transform: scale(1.05);
+    }
+
+    .card-name {
+      margin-top: 20px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+    }
+
+    /* Active card */
+    .card.is-active .card-img {
+      outline: 1px solid rgba(201, 168, 108, 0.3);
+      outline-offset: 8px;
+    }
+
+    /* ═══════════════════════════════════════════
+       INLINE DETAIL
+       ═══════════════════════════════════════════ */
+    .inline-detail {
+      grid-column: 1 / -1;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity 0.5s ease;
+    }
+
+    .inline-detail.open {
+      max-height: 600px;
+      opacity: 1;
+    }
+
+    .inline-detail-inner {
+      border-top: 1px solid #e8e8e8;
+      padding: 64px 0 32px;
+      display: flex;
+      gap: 80px;
+      align-items: flex-start;
+    }
+
+    @media (max-width: 767px) {
+      .inline-detail-inner {
+        flex-direction: column;
+        gap: 40px;
+        padding: 48px 0 24px;
+      }
+    }
+
+    .inline-detail-text {
+      max-width: 420px;
+    }
+
+    .inline-detail-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      margin-bottom: 28px;
+    }
+
+    .inline-detail-desc {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: #666;
+      line-height: 2.2;
+      margin-bottom: 40px;
+    }
+
+    .inline-detail-price {
+      font-size: 0.85rem;
+      color: #999;
+      letter-spacing: 0.06em;
+      margin-bottom: 32px;
+    }
+
+    .inline-detail-cta {
+      display: inline-block;
+      padding: 16px 44px;
+      border: 1px solid var(--charcoal);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      transition: all 0.5s;
+    }
+
+    .inline-detail-cta:hover {
+      background: var(--charcoal);
+      color: white;
+    }
+
+    .inline-detail-cta--soon {
+      border-color: #ccc;
+      color: #999;
+      cursor: default;
+    }
+
+    .inline-detail-cta--soon:hover {
+      background: transparent;
+      color: #999;
+    }
+
+    .inline-detail-close {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #bbb;
+      transition: color 0.3s;
+      flex-shrink: 0;
+      margin-left: auto;
+      align-self: flex-start;
+    }
+
+    .inline-detail-close:hover { color: var(--charcoal); }
+
+    /* Inquire-only (極 / Bespoke) */
+    .inline-detail-inquire {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 300;
+      font-style: italic;
+      color: #999;
+      margin-bottom: 32px;
+    }
+
+    /* ═══════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════ */
+    .footer {
+      padding: 80px 24px;
+      background: var(--ink);
+      text-align: center;
+    }
+
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      letter-spacing: 0.35em;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 16px;
+    }
+
+    .footer-location {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: rgba(255, 255, 255, 0.25);
+    }
+
+    .footer-copy {
+      margin-top: 48px;
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.15);
+      letter-spacing: 0.1em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">FOMUS PARURE</a>
+      <ul class="nav-links">
+        <li><a href="index.html#maison" data-i18n="nav.maison">Maison</a></li>
+        <li><a href="collections.html" data-i18n="nav.collections">Collections</a></li>
+        <li><a href="index.html#bespoke" data-i18n="nav.bespoke">Bespoke</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- Header -->
+    <header class="page-header">
+      <h1 data-i18n="col.title">Collections</h1>
+    </header>
+
+    <!-- Grid -->
+    <section class="grid-wrap">
+      <div class="grid" id="grid">
+        <!-- Grid items are rendered by JS -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p class="footer-brand">FOMUS PARURE</p>
+    <p class="footer-location" data-i18n="footer.location">Kyoto, Japan</p>
+    <p class="footer-copy">&copy; 2025 FOMUS PARURE</p>
+  </footer>
+
+  <script>
+    // ─── Product Data ───
+    const products = [
+      {
+        id: 'earring-tonbodama-blue',
+        name: 'Earring',
+        fullName: 'FOMUS PARURE Earring (TONBO-DAMA blue)',
+        image: 'images/products/earring-tonbodama-blue.jpg',
+        desc: '伝統的なトンボ玉の技法を用いた、深い青の輝きが耳元を彩るイヤリング。枡のかたちに宿る日本の美意識を、現代のジュエリーとして昇華しました。',
+        price: '€675',
+        type: 'product'
+      },
+      {
+        id: 'necklace-white',
+        name: 'Necklace',
+        fullName: 'FOMUS PARURE Necklace (White)',
+        image: 'images/products/necklace-white.jpg',
+        desc: '白の静謐さを胸元に纏う。枡のかたちから生まれたペンダントが、洗練された日常に寄り添います。',
+        price: '€900',
+        type: 'product'
+      },
+      {
+        id: 'necklace-yellow',
+        name: 'Necklace',
+        fullName: 'FOMUS Parure Necklace (Yellow)',
+        image: 'images/products/necklace-yellow.jpg',
+        desc: '温かみのある黄色が、枡のフォルムとともに胸元で静かに存在感を放つネックレス。日常の中に小さな華やぎを。',
+        price: '€900',
+        type: 'product'
+      },
+      {
+        id: 'pierce-white-flower',
+        name: 'Pierce',
+        fullName: 'FOMUS Parure Pierce (white flower)',
+        image: 'images/products/pierce-white-flower.jpg',
+        desc: '白い花のモチーフが耳元で揺れる。枡の伝統美と花の繊細さが調和したピアス。',
+        price: '€675',
+        type: 'product'
+      },
+      {
+        id: 'earring-red-blossom',
+        name: 'Earring',
+        fullName: 'FOMUS Parure Earring (Red blossom)',
+        image: 'images/products/earring-red-blossom.jpg',
+        desc: '紅の花弁が耳元で静かに咲く。枡のかたちに日本の花の美を重ねた、華やかでありながら品のある一品。',
+        price: '€675',
+        type: 'product'
+      },
+      {
+        id: 'earring-white-blossom',
+        name: 'Earring',
+        fullName: 'FOMUS Parure Earring (White blossom)',
+        image: 'images/products/earring-white-blossom.jpg',
+        desc: '白い花が耳元にそっと寄り添う。清楚な美しさと枡の端正なフォルムが調和したイヤリング。',
+        price: '€675',
+        type: 'product'
+      },
+      {
+        id: 'earring-temari-black',
+        name: 'Earring',
+        fullName: 'FOMUS Parure Earring (TEMARI Black)',
+        image: 'images/products/earring-temari-black.jpg',
+        desc: '手毬の精緻な文様を黒で表現した、凛とした佇まいのイヤリング。伝統工芸の技が、現代の装いに深みを添えます。',
+        price: '€675',
+        type: 'product'
+      },
+      {
+        id: 'pierce-red-blossom',
+        name: 'Pierce',
+        fullName: 'FOMUS Parure Pierce (Red blossom)',
+        image: 'images/products/pierce-red-blossom.jpg',
+        desc: '紅の花弁を纏ったピアス。枡のかたちの中に宿る日本の花の美が、耳元で静かに物語を紡ぎます。',
+        price: '€675',
+        type: 'product'
+      },
+      {
+        id: 'pierce-temari-white',
+        name: 'Pierce',
+        fullName: 'FOMUS Parure Pierce (TEMARI White)',
+        image: 'images/products/pierce-temari-white.jpg',
+        desc: '白い手毬の繊細な文様をピアスに。伝統的な美意識を日常の装いに取り入れる、上品な一品。',
+        price: '€675',
+        type: 'product'
+      },
+      {
+        id: 'pierce-black-blossom',
+        name: 'Pierce',
+        fullName: 'FOMUS Parure Pierce (Black blossom)',
+        image: 'images/products/pierce-black-blossom.jpg',
+        desc: '黒い花弁が耳元に凛と咲く。モダンな色彩と枡の伝統美が出会う、洗練されたピアス。',
+        price: '€675',
+        type: 'product'
+      },
+      {
+        id: 'earring-yellow-flower',
+        name: 'Earring',
+        fullName: 'FOMUS Parure Earring (yellow flower)',
+        image: 'images/products/earring-yellow-flower.jpg',
+        desc: '黄色い花のモチーフが、耳元に温かな彩りを添えるイヤリング。枡の端正なかたちと花の柔らかさが調和します。',
+        price: '€675',
+        type: 'product'
+      },
+      {
+        id: 'earring-white-flower',
+        name: 'Earring',
+        fullName: 'FOMUS Parure Earring (white flower)',
+        image: 'images/products/earring-white-flower.jpg',
+        desc: '白い花が耳元で清らかに揺れる。花と枡が織りなす、繊細で上品なイヤリング。',
+        price: '€675',
+        type: 'product'
+      },
+      {
+        id: 'bespoke',
+        name: 'Full Bespoke',
+        fullName: 'FOMUS PARURE フルオーダーメイド',
+        image: 'images/products/full-order.png',
+        desc: '',
+        price: '',
+        type: 'inquire'
+      }
+    ];
+
+    // ─── Render Grid ───
+    const grid = document.getElementById('grid');
+    let activeDetail = null;
+    let activeCard = null;
+
+    function getColCount() {
+      const w = window.innerWidth;
+      if (w >= 1024) return 4;
+      if (w >= 640) return 3;
+      return 2;
+    }
+
+    function render() {
+      grid.innerHTML = '';
+      activeDetail = null;
+      activeCard = null;
+
+      products.forEach((p, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'card';
+        btn.dataset.index = i;
+        btn.innerHTML = `
+          <div class="card-img">
+            <img src="${p.image}" alt="${p.name}" loading="lazy">
+          </div>
+          <h3 class="card-name">${p.name}</h3>
+        `;
+        btn.addEventListener('click', () => openDetail(i, btn));
+        grid.appendChild(btn);
+      });
+    }
+
+    function getLang() {
+      return (typeof getCurrentLang === 'function') ? getCurrentLang() : 'ja';
+    }
+
+    function tt(key) {
+      return (typeof t === 'function') ? t(key, getLang()) : '';
+    }
+
+    function getDesc(product) {
+      const key = 'prod.desc.' + product.id;
+      const translated = tt(key);
+      return translated || product.desc;
+    }
+
+    function openDetail(index, cardEl) {
+      const product = products[index];
+      const lang = getLang();
+
+      // 同じカード → 閉じる
+      if (activeCard === cardEl) {
+        closeDetail();
+        return;
+      }
+
+      // 既存パネル削除
+      closeDetail(true);
+
+      // アクティブ状態
+      activeCard = cardEl;
+      cardEl.classList.add('is-active');
+
+      // 挿入位置を計算（行の最後のカードの後）
+      const cols = getColCount();
+      const row = Math.floor(index / cols);
+      const insertAfterIndex = Math.min((row + 1) * cols - 1, products.length - 1);
+
+      // 挿入対象
+      const cards = grid.querySelectorAll('.card');
+      const insertAfter = cards[insertAfterIndex];
+
+      // パネル生成
+      const panel = document.createElement('div');
+      panel.className = 'inline-detail';
+      panel.id = 'active-detail';
+
+      const closeText = tt('col.close') || 'Close';
+
+      if (product.type === 'inquire') {
+        const appointmentText = tt('col.appointment') || 'Available by appointment only.';
+        const ctaText = product.id === 'bespoke'
+          ? (tt('col.concierge') || 'Contact Concierge')
+          : (tt('col.inquire') || 'Inquire');
+        panel.innerHTML = `
+          <div class="inline-detail-inner">
+            <div class="inline-detail-text">
+              <h3 class="inline-detail-name">${product.fullName}</h3>
+              <p class="inline-detail-inquire">${appointmentText}</p>
+              <a href="mailto:contact@fomusparure.com" class="inline-detail-cta">
+                ${ctaText}
+              </a>
+            </div>
+            <button class="inline-detail-close" onclick="closeDetail()">${closeText}</button>
+          </div>
+        `;
+      } else {
+        const desc = getDesc(product);
+        const comingSoon = tt('col.coming') || 'Coming Soon';
+        const inclTax = tt('col.incltax') || '(incl. tax)';
+        panel.innerHTML = `
+          <div class="inline-detail-inner">
+            <div class="inline-detail-text">
+              <h3 class="inline-detail-name">${product.fullName}</h3>
+              <p class="inline-detail-desc jp">${desc}</p>
+              <p class="inline-detail-price">${product.price} ${inclTax}</p>
+              <span class="inline-detail-cta inline-detail-cta--soon">${comingSoon}</span>
+            </div>
+            <button class="inline-detail-close" onclick="closeDetail()">${closeText}</button>
+          </div>
+        `;
+      }
+
+      insertAfter.after(panel);
+      activeDetail = panel;
+
+      requestAnimationFrame(() => {
+        panel.classList.add('open');
+        setTimeout(() => {
+          panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 100);
+      });
+    }
+
+    function closeDetail(instant) {
+      if (activeDetail) {
+        if (instant) {
+          activeDetail.remove();
+        } else {
+          activeDetail.classList.remove('open');
+          const el = activeDetail;
+          setTimeout(() => el.remove(), 500);
+        }
+        activeDetail = null;
+      }
+      if (activeCard) {
+        activeCard.classList.remove('is-active');
+        activeCard = null;
+      }
+    }
+
+    // リサイズ時にパネルを閉じる（列数変わるので位置がずれる）
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        closeDetail(true);
+      }, 200);
+    });
+
+    // ─── Language change: re-render detail if open ───
+    window.addEventListener('langchange', () => {
+      if (activeCard && activeDetail) {
+        const idx = parseInt(activeCard.dataset.index, 10);
+        const card = activeCard;
+        closeDetail(true);
+        openDetail(idx, card);
+      }
+    });
+
+    // ─── Init ───
+    render();
+
+  </script>
+  <script src="i18n.js"></script>
+
+</body>
+</html>
